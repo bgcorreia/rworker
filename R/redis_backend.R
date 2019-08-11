@@ -51,7 +51,7 @@ RedisBackend <- R6::R6Class(
                        children=NULL)
             }
             msg = jsonlite::toJSON(msg, auto_unbox=TRUE, null='null')
-            key = glue::glue('task-meta-{id}')
+            key = glue::glue('celery-task-meta-{id}')
             private$redis_client$SET(key, msg)
             return(NULL)
         }
