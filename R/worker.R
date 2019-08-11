@@ -87,10 +87,11 @@ Worker <- R6::R6Class(
 
         inject_progress = function(tereq) {
             expr <- substitute({
-                task_progress <- function(pg) {
+                task_progress <- function(step,message) {
                     rzmq::send.socket(socket,
                                       data=list(status='PROGRESS',
-                                                progress=pg,
+                                                step=step,
+                                                message=message,
                                                 errors=NULL,
                                                 warnings=NULL,
                                                 task_id=id))
