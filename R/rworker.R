@@ -166,7 +166,7 @@ Rworker <- R6::R6Class(
                     if (report$status == 'PROGRESS') {
                         # class(report) == list
                         log_it(
-                            glue('Task {report$task_id} progress: {report$progress}'),'info')
+                            glue('Task {report$task_id} step:{report$step} message: {report$message}'),'info')
                         
                         self$backend$store_result(report$task_id, report)
                     } else {

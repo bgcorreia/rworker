@@ -40,7 +40,7 @@ RedisBackend <- R6::R6Class(
             } else {
                 # Prepare the result data - add a result property to 
                 # the list if result data is present
-                res_data <- list(progress=msg$progress)
+                res_data <- list(step=msg$step,message=msg$message)
                 if(!is.null(msg$result)) {
                     res_data$result <- msg$result
                 }
@@ -51,7 +51,7 @@ RedisBackend <- R6::R6Class(
                        children=NULL)
             }
             msg = jsonlite::toJSON(msg, auto_unbox=TRUE, null='null')
-            key = glue::glue('celery-task-meta-{id}')
+            key = glue::glue('task-meta-{id}')
             private$redis_client$SET(key, msg)
             return(NULL)
         }
